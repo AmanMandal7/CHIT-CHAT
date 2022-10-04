@@ -1,0 +1,18 @@
+{
+  "name": "04-chit-chat",
+  "version": "1.0.0",
+  "description": "it is one of the most advnaced chap app",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon backend/server.js"
+  },
+  "author": "Aman Mandal",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "epxress": "^0.0.1-security",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.3",
+    "nodemon": "^2.0.20"
+  }
+}
