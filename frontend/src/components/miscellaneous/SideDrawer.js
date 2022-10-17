@@ -23,6 +23,7 @@ const SideDrawer = () => {
 
     const logoutHandler = () => {
         localStorage.removeItem("userInfo");
+        localStorage.clear();
         navigate('/');
     }
 
@@ -63,6 +64,7 @@ const SideDrawer = () => {
     };
 
     const accessChat = async (userId) => {
+
         try {
             setLoadingChat(true);
 
@@ -161,7 +163,7 @@ const SideDrawer = () => {
                                 <UserListItem
                                     key={user._id}
                                     user={user}
-                                    handleFunction={() => accessChat(user._id)}
+                                    handleFunction={() => accessChat(user?._id)}
                                 />
                             ))
                         )};

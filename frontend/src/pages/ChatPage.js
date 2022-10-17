@@ -8,8 +8,8 @@ import { useState } from "react";
 
 const ChatPage = () => {
 
-    const { user } = ChatState();
-    const [fetchAgain, setFetchAgain] = useState();
+    const { user, fetchAgain, setFetchAgain } = ChatState();
+
 
     return (
         <div style={{ width: "100%" }}>

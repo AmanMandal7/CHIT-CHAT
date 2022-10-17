@@ -7,10 +7,10 @@ import { ChatState } from '../context/ChatProvider'
 import ChatLoading from './ChatLoading';
 import GroupChatModal from './miscellaneous/GroupChatModal';
 
-const MyChats = ({ fetchAgain }) => {
+const MyChats = () => {
 
     const [loggedUser, setLoggedUser] = useState();
-    const { user, selectedChat, setSelectedChat, chats, setChats } = ChatState();
+    const { user, selectedChat, setSelectedChat, chats, setChats, fetchAgain } = ChatState();
 
     const toast = useToast();
 
@@ -99,7 +99,7 @@ const MyChats = ({ fetchAgain }) => {
                                 key={chat._id}
                             >
                                 <Text>
-                                    {!chat.isGroupChat ?
+                                    {!(chat?.isGroupChat) ?
                                         getSender(loggedUser, chat.users)
                                         : chat.chatName}
                                 </Text>

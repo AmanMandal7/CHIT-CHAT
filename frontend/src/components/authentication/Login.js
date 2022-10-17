@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useToast } from '@chakra-ui/react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ChatState } from '../../context/ChatProvider';
 
 const Login = () => {
     const [show, setShow] = useState(false);
@@ -14,6 +15,8 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleClick = () => setShow(!show);
+
+    const { setUser } = ChatState();
 
     const submitHandler = async () => {
         if (!email || !password) {
@@ -36,6 +39,7 @@ const Login = () => {
             };
 
             const { data } = await axios.post("api/user/login", { email, password }, config);
+            setUser(data);
             toast({
                 title: "Login Successful!",
                 status: "success",

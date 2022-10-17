@@ -9,13 +9,13 @@ const Homepage = () => {
 
     const navigate = useNavigate();
 
+    const user = JSON.parse(localStorage.getItem("userInfo"));
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("userInfo"));
 
         if (user) {
             navigate("/chats");
         }
-    }, [navigate]);
+    }, [navigate, user]);
 
     return (
         <Container maxW='xl' centerContent>

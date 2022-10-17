@@ -45,6 +45,7 @@ const GroupChatModal = ({ children }) => {
                 duration: 5000,
                 position: "bottom-left"
             });
+            setLoading(false);
         }
     };
 

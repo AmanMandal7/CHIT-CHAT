@@ -25,6 +25,7 @@ const accessChat = asyncHandler(async (req, res) => {
     });
 
     if (isChat.length > 0) {
+        console.log(isChat);
         res.send(isChat[0]);
     } else {
         var chatData = {
@@ -37,9 +38,9 @@ const accessChat = asyncHandler(async (req, res) => {
             const createdChat = await Chat.create(chatData);
 
             const FullChat = await Chat.findOne({ _id: createdChat._id }).populate("users", "-password");
-            res.sendStatus(200).send(FullChat);
+            res.status(200).send(FullChat);
         } catch (error) {
-            res.status(400);
+            res.status(400).send(error.toString());
             throw new Error(error.message);
         }
     }
@@ -73,7 +74,7 @@ const createGroupChat = asyncHandler(async (req, res) => {
 
     var users = JSON.parse(req.body.users);
 
-    if (users.length > 2) {
+    if (users.length < 2) {
         return res.status(400).send("At least 2 members required to create a group chat")
     };
 
