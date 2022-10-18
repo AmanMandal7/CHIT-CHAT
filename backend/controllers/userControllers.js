@@ -64,7 +64,7 @@ const allUsers = asyncHandler(async (req, res) => {
         ]
     } : {};
 
-    const users = await User.findOne(keyword).find({ _id: { $ne: req.user._id } });  // $ne(not equalto), $regex, $options are mongoDB operators, read the documentation for it
+    const users = await User.findOne(keyword).find({ _id: { $ne: req.user?._id } });  // $ne(not equalto), $regex, $options are mongoDB operators, read the documentation for it
     res.send(users);
 })
 
