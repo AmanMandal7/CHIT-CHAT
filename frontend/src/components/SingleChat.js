@@ -9,11 +9,16 @@ import UpdateGroupChatModal from './miscellaneous/UpdateGroupChatModal';
 import ScrollableChat from './ScrollableChat';
 import './style.css'
 
+import io from 'socket.io-client';
+const ENDPOINT = "http://localhost:5000";
+var socket, selectedChatCompare;
+
 const SingleChat = () => {
 
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [newMessage, setNewMessage] = useState();
+    const [socketConnected, setSocketConnected] = useState(false);
 
     const toast = useToast();
     const { user, selectedChat, setSelectedChat } = ChatState();
@@ -82,6 +87,12 @@ const SingleChat = () => {
             }
         }
     };
+
+    useEffect(() => {
+        socket = io(ENDPOINT);
+        socket.emit("setup", user);
+        socket.on("connection", () => setSocketConnected(true));
+    }, []);
 
     const typingHandler = (e) => {
         setNewMessage(e.target.value);
