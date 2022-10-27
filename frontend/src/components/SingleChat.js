@@ -12,7 +12,7 @@ import animationData from '../animations/typing.json'
 import './style.css'
 
 import io from 'socket.io-client';
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://red-violet-centipede-boot.cyclic.app";
 var socket, selectedChatCompare;
 
 const SingleChat = () => {
