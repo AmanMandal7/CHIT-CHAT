@@ -2,6 +2,7 @@ import { ViewIcon } from '@chakra-ui/icons';
 import { Box, Button, FormControl, IconButton, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, useDisclosure, useToast } from '@chakra-ui/react'
 import axios from 'axios';
 import React, { useState } from 'react'
+import { API } from '../../API';
 import { ChatState } from '../../context/ChatProvider';
 import UserBadgeItem from '../UserAvatar/UserBadgeItem';
 import UserListItem from '../UserAvatar/UserListItem';
@@ -51,7 +52,7 @@ const UpdateGroupChatModal = ({ fetchMessages }) => {
                 }
             };
 
-            const { data } = await axios.put("/api/chat/groupadd", {
+            const { data } = await API.put("/api/chat/groupadd", {
                 chatId: selectedChat._id,
                 userId: user1._id,
             },
@@ -96,7 +97,7 @@ const UpdateGroupChatModal = ({ fetchMessages }) => {
                 }
             };
 
-            const { data } = await axios.put("/api/chat/groupremove", {
+            const { data } = await API.put("/api/chat/groupremove", {
                 chatId: selectedChat._id,
                 userId: user1._id,
             },
@@ -134,7 +135,7 @@ const UpdateGroupChatModal = ({ fetchMessages }) => {
                 }
             };
 
-            const { data } = await axios.put("/api/chat/rename",
+            const { data } = await API.put("/api/chat/rename",
                 {
                     chatId: selectedChat._id,
                     chatName: groupChatName
@@ -176,7 +177,7 @@ const UpdateGroupChatModal = ({ fetchMessages }) => {
                 },
             };
 
-            const { data } = await axios.get(`/api/user?search=${search}`, config);
+            const { data } = await API.get(`/api/user?search=${search}`, config);
             console.log(data);
             setLoading(false);
             setSearchResult(data);

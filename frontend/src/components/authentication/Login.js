@@ -4,6 +4,7 @@ import { useToast } from '@chakra-ui/react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ChatState } from '../../context/ChatProvider';
+import { API } from '../../API';
 
 const Login = () => {
     const [show, setShow] = useState(false);
@@ -38,7 +39,7 @@ const Login = () => {
                 },
             };
 
-            const { data } = await axios.post("api/user/login", { email, password }, config);
+            const { data } = await API.post("api/user/login", { email, password }, config);
             setUser(data);
             toast({
                 title: "Login Successful!",

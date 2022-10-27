@@ -12,6 +12,7 @@ import animationData from '../animations/typing.json'
 import './style.css'
 
 import io from 'socket.io-client';
+import { API } from '../API';
 const ENDPOINT = "https://red-violet-centipede-boot.cyclic.app";
 var socket, selectedChatCompare;
 
@@ -48,7 +49,7 @@ const SingleChat = () => {
 
             setLoading(true);
 
-            const { data } = await axios.get(`/api/message/${selectedChat._id}`, config);
+            const { data } = await API.get(`/api/message/${selectedChat._id}`, config);
 
             // console.log(messages);
             setMessages(data);
@@ -108,7 +109,7 @@ const SingleChat = () => {
 
                 setNewMessage("");
 
-                const { data } = await axios.post("/api/message", {
+                const { data } = await API.post("/api/message", {
                     content: newMessage,
                     chatId: selectedChat
                 }, config);

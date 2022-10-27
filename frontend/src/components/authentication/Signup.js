@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useToast } from '@chakra-ui/react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API } from '../../API';
 
 const Signup = () => {
 
@@ -94,7 +95,7 @@ const Signup = () => {
                 }
             };
 
-            const { data } = await axios.post("api/user", { name, email, password, pic }, config);
+            const { data } = await API.post("api/user", { name, email, password, pic }, config);
 
             toast({
                 title: "Registration Successful!",

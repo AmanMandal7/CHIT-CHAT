@@ -11,6 +11,7 @@ import UserListItem from '../UserAvatar/UserListItem';
 import { getSender } from '../../config/ChatLogics';
 import NotificationBadge from 'react-notification-badge';
 import { Effect } from 'react-notification-badge';
+import { API } from '../../API';
 // import { } from '@chakra-ui/spinner';
 
 const SideDrawer = () => {
@@ -51,7 +52,7 @@ const SideDrawer = () => {
                 }
             };
 
-            const { data } = await axios.get(`/api/user?search=${search}`, config);
+            const { data } = await API.get(`/api/user?search=${search}`, config);
             setLoading(false);
             setSearchResult(data);
         } catch (error) {
@@ -78,7 +79,7 @@ const SideDrawer = () => {
                 }
             };
 
-            const { data } = await axios.post("/api/chat", { userId }, config);
+            const { data } = await API.post("/api/chat", { userId }, config);
 
             if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
 

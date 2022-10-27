@@ -1,6 +1,7 @@
 import { Box, Button, FormControl, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useState } from 'react'
+import { API } from '../../API';
 import { ChatState } from '../../context/ChatProvider';
 import UserBadgeItem from '../UserAvatar/UserBadgeItem';
 import UserListItem from '../UserAvatar/UserListItem';
@@ -32,7 +33,7 @@ const GroupChatModal = ({ children }) => {
                 },
             };
 
-            const { data } = await axios.get(`/api/user?search=${search}`, config);
+            const { data } = await API.get(`/api/user?search=${search}`, config);
             // console.log(data);
             setLoading(false);
             setSearchResult(data);
@@ -68,7 +69,7 @@ const GroupChatModal = ({ children }) => {
                 },
             };
 
-            const { data } = await axios.post("/api/chat/group", {
+            const { data } = await API.post("/api/chat/group", {
                 name: groupChatName,
                 users: JSON.stringify(selectedUsers.map((u) => u._id)),
             },

@@ -2,6 +2,7 @@ import { AddIcon } from '@chakra-ui/icons';
 import { Box, Button, Stack, Text, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { API } from '../API';
 import { getSender } from '../config/ChatLogics';
 import { ChatState } from '../context/ChatProvider'
 import ChatLoading from './ChatLoading';
@@ -23,7 +24,7 @@ const MyChats = () => {
                 },
             }
 
-            const { data } = await axios.get('/api/chat', config);
+            const { data } = await API.get('/api/chat', config);
             console.log(data);
             setChats(data);
         } catch (error) {
